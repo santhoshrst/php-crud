@@ -31,31 +31,32 @@
   </thead>
   <tbody>
          <?php
- 
-              $connection = mysqli_connect("localhost","root","");
-              $db = mysqli_select_db($connection,"dbcrud");
+         $connection = mysqli_connect("localhost", "root", "");
+         $db = mysqli_select_db($connection, "dbcrud");
 
-              $sql = "select * from form";
-              $run = mysqli_query($connection, $sql);
-              $i=1;
+         $sql = "select * from form";
+         $run = mysqli_query($connection, $sql);
+         $i = 1;
 
-              while($row = mysqli_fetch_array($run))
-                  {
-                    $uid = $row['id'];
-                    $name = $row['name'];
-                    $address = $row['address'];
-                    $mobile = $row['mobile'];
-                    ?>
+         while ($row = mysqli_fetch_array($run)) {
+
+             $uid = $row["id"];
+             $name = $row["name"];
+             $address = $row["address"];
+             $mobile = $row["mobile"];
+             ?>
                     <tr>
-                    <td><?php echo $uid ?></td>
-                    <td><?php echo $name ?></td>
-                    <td><?php echo $address ?></td>
-                    <td><?php echo $mobile ?></td>
+                    <td><?php echo $uid; ?></td>
+                    <td><?php echo $name; ?></td>
+                    <td><?php echo $address; ?></td>
+                    <td><?php echo $mobile; ?></td>
                   
-                    <td><button class="btn btn-success"> <a href='edit.php?edit=<?php echo $uid ?>' class="text-light"> Edit </a> </button> &nbsp;
-                     <button style= "margin-left:50px" class="btn btn-secondary"><a href="delete.php?delete=<?php echo $uid ?>" class ="text-black"> delete </a></button></td>
+                    <td><button class="btn btn-success"> <a href='edit.php?edit=<?php echo $uid; ?>' class="text-light"> Edit </a> </button> &nbsp;
+                     <button style= "margin-left:50px" class="btn btn-secondary"><a href="delete.php?delete=<?php echo $uid; ?>" class ="text-black"> delete </a></button></td>
                     <tr>
-                  <?php $i++; } ?> 
+                  <?php $i++;
+         }
+         ?> 
 
   </tbody>
   </table>
