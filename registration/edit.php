@@ -1,39 +1,33 @@
 
 <?php
+$connection = mysqli_connect("localhost", "root", "");
+$db = mysqli_select_db($connection, "dbcrud");
+$edit = $_GET["edit"];
 
-        $connection = mysqli_connect("localhost","root","");
-        $db = mysqli_select_db($connection,"dbcrud");
-        $edit = $_GET['edit'];    
+$sql = "select * from form where id='$edit'";
+$run = mysqli_query($connection, $sql);
 
-                 $sql = "select * from form where id='$edit'";
-                 $run = mysqli_query($connection, $sql);
+while ($row = mysqli_fetch_array($run)) {
+    $uid = $row["id"];
+    $name = $row["name"];
+    $address = $row["address"];
+    $mobile = $row["mobile"];
 
-                 while($row = mysqli_fetch_array($run))
-                 {
-                   $uid = $row['id'];
-                   $name = $row['name'];
-                   $address = $row['address'];
-                   $mobile = $row['mobile'];
+    if (isset($_POST["submit"])) {
+        $name = $_POST["name"];
+        $address = $_POST["address"];
+        $mobile = $_POST["mobile"];
 
-                   if(isset($_POST["submit"]))
-                   {
-                        $name = $_POST["name"];
-                        $address = $_POST["address"];
-                        $mobile = $_POST["mobile"];
-       
-                        $sql = "update form set name ='$name',address = '$address', mobile ='$mobile' where id = $edit";
-       
-                        if(mysqli_query($connection,$sql))
-                        {
-                           echo '<script> location.replace("index.php")</script>';
-                        }
-                        else {
-                         echo "error show". $connection->error;
-                   }
-                       }
-                  
-                   
-                }?>
+        $sql = "update form set name ='$name',address = '$address', mobile ='$mobile' where id = $edit";
+
+        if (mysqli_query($connection, $sql)) {
+            echo '<script> location.replace("index.php")</script>';
+        } else {
+            echo "error show" . $connection->error;
+        }
+    }
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
