@@ -1,24 +1,21 @@
 <?php
 
-        $connection = mysqli_connect("localhost","root","");
-        $db = mysqli_select_db($connection,"dbcrud");
+$connection = mysqli_connect("localhost", "root", "");
+$db = mysqli_select_db($connection, "dbcrud");
 
-        if(isset($_POST["submit"]))
-            {
-                 $name = $_POST["name"];
-                 $address = $_POST["address"];
-                 $mobile = $_POST["mobile"];
+if (isset($_POST["submit"])) {
+    $name = $_POST["name"];
+    $address = $_POST["address"];
+    $mobile = $_POST["mobile"];
 
-                 $sql = "insert into form (name,address,mobile)values('$name','$address','$mobile')";
+    $sql = "insert into form (name,address,mobile)values('$name','$address','$mobile')";
 
-                 if(mysqli_query($connection,$sql))
-                 {
-                    echo '<script> location.replace("index.php")</script>';
-                 }
-                 else {
-                  echo "error show". $connection->error;
-            }
-                }
+    if (mysqli_query($connection, $sql)) {
+        echo '<script> location.replace("index.php")</script>';
+    } else {
+        echo "error show" . $connection->error;
+    }
+}
 ?>
 
 <!DOCTYPE html>
